@@ -62,7 +62,9 @@ button {
   font-size: 1.2rem;
   cursor: pointer;
 }
-
+.money{
+  display: flex;
+}
 
 .note {
   margin-top: 1rem;

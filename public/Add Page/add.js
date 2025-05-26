@@ -6,7 +6,8 @@ document.getElementById("add-form").addEventListener("submit", async (e)=>{
     const count = result.count;
     const login = await fetch('/permission-check');
     const respon = await login.json();
-    if (sessionStorage.getItem(respon.currentLoggedIn) && sessionStorage.getItem(respon.ifLoggedIn) === "true"){
+    const isLoggedIn = respon.ifLoggedIn === "true";
+    if (isLoggedIn){
         const formData = new FormData(e.target);
         const data = {
             number: count+1,
@@ -15,7 +16,7 @@ document.getElementById("add-form").addEventListener("submit", async (e)=>{
             furnished: formData.get('furnished') === "Yes",
             locality: formData.get('locality'),
             sqfeet: formData.get('sqfeet'),
-            totalprice: formData.get('totalprice'),
+            totalprice: `${formData.get('totalprice')} ${formData.get('money')}`,
             availableon: formData.get('availableOn'),
             ownername: formData.get('ownername'),
             mobileno: formData.get('ownernumber'),

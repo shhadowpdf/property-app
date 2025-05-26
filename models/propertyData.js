@@ -7,7 +7,7 @@ const propertySchema = new mongoose.Schema({
     furnished: Boolean,
     locality: String,
     sqfeet: Number,
-    totalprice: Number,
+    totalprice: String,
     availableon: String,
     ownername: String,
     mobileno: Number,

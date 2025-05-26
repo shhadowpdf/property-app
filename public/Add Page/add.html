@@ -4,8 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add-Property</title>
-    <link rel="stylesheet" href="/Add Page/add.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="/Add Page/add.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
   </head>
   <body>
     <div class="outer-container">
@@ -23,8 +26,16 @@
           </select>
         </div>
         <div class="input-type">
-          <label for="bedrooms">Number of bedrooms (Completely mention with BHK)</label>
-          <input type="text" name="bedrooms" id="bedrooms" placeholder="Enter number of bedrooms" required/>
+          <label for="bedrooms"
+            >Number of bedrooms (Completely mention with BHK)</label
+          >
+          <input
+            type="text"
+            name="bedrooms"
+            id="bedrooms"
+            placeholder="Enter number of bedrooms"
+            required
+          />
         </div>
         <div class="input-type">
           <label for="furnished">Furnished status</label>
@@ -35,20 +46,40 @@
         </div>
         <div class="input-type">
           <label for="locality">Locality</label>
-          <input type="text" name="locality" id="locality" placeholder="Enter locality/area" required>
-          <select title="money" name="money" id="money">
-            <option value="Thousand">Thousand</option>
-            <option value="Lakh">Lakh</option>
-            <option value="Crore">Crore</option>
-          </select>
+          <input
+            type="text"
+            name="locality"
+            id="locality"
+            placeholder="Enter locality/area"
+            required
+          />
         </div>
         <div class="input-type">
           <label for="sqfeet">Area</label>
-          <input type="number" name="sqfeet" id="sqfeet" placeholder="Enter area in sqfeet" required/>
+          <input
+            type="number"
+            name="sqfeet"
+            id="sqfeet"
+            placeholder="Enter area in sqfeet"
+            required
+          />
         </div>
         <div class="input-type">
           <label for="totalprice">Total Price</label>
-          <input type="number" name="totalprice" id="totalprice" placeholder="Enter total price" required/>
+          <div class="money">
+            <input
+              type="number"
+              name="totalprice"
+              id="totalprice"
+              placeholder="Enter total price"
+              required
+            />
+            <select title="money" name="money" id="money">
+              <option value="Thousand">Thousand</option>
+              <option value="Lakh">Lakh</option>
+              <option value="Crore">Crore</option>
+            </select>
+          </div>
         </div>
         <div class="input-type">
           <label for="availableOn">Available for</label>
@@ -60,18 +91,38 @@
 
         <div class="input-type">
           <label for="ownername">Owner Name</label>
-          <input type="text" name="ownername" id="ownername" placeholder="Enter owner name" required/>
+          <input
+            type="text"
+            name="ownername"
+            id="ownername"
+            placeholder="Enter owner name"
+            required
+          />
         </div>
         <div class="input-type">
           <label for="ownernumber">Owner Number</label>
-          <input type="number" name="ownernumber" id="ownernumber" placeholder="Enter owner number" required/>
+          <input
+            type="number"
+            name="ownernumber"
+            id="ownernumber"
+            placeholder="Enter owner number"
+            required
+          />
         </div>
         <div class="input-type">
           <label for="Address"> Complete Address</label>
-          <input type="text" name="Address" id="Address" placeholder="Enter complete address" required/>
+          <input
+            type="text"
+            name="Address"
+            id="Address"
+            placeholder="Enter complete address"
+            required
+          />
         </div>
         <button type="submit">Submit</button>
-        <p class="note">Make sure the above mentioned information is correct.</p>
+        <p class="note">
+          Make sure the above mentioned information is correct.
+        </p>
       </form>
     </div>
     <script src="/Add Page/add.js"></script>
