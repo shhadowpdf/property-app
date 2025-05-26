@@ -1,0 +1,94 @@
+const express = require('express')
+const path = require('path')
+const fsp = require('fs/promises')
+const fs = require('fs')
+const router = express.Router();
+const Property = require('../models/propertyData.js')
+
+
+const logs = (req, res, next) => {
+    fsp.appendFile(path.join(__dirname, '..', 'logs.txt'), `Someone visited Listing ${Date.now()} \n`)
+    next()
+}
+router.use(logs)
+
+router.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '..','public', 'Listing', 'listing.html'))
+}
+);
+router.get('/all-property',(req,res)=>{
+    res.sendFile(path.join(__dirname,'..','public','All Properties', 'all.html'))
+})
+router.get('/add-property',(req,res)=>{
+    res.sendFile(path.join(__dirname,'..','public', 'Add Page', 'add.html'))
+})
+router.post('/add-property', async (req,res)=> {
+    try{
+        const newProperty = new Property(req.body);
+        await newProperty.save();
+        res.status(200).json({message: 'Property Added Successfully.'})
+    }catch(err){
+        console.log(err);
+        res.status(500).json({message: 'Failed to add property.'})
+    }
+})
+
+router.get('/property-count', async (req,res)=>{
+    try{
+        const count = await Property.countDocuments({});
+        res.json({count});
+    }catch(err){
+        res.status(500).json({error: 'Failed to get count'})
+    }
+});
+router.get('/fetch-property', async (req, res) => {
+    try {
+        const properties = await Property.find({},{
+            number: 1,
+            type:1,
+            bedrooms:1,
+            furnished:1,
+            locality:1,
+            sqfeet:1,
+            totalprice:1,
+            availableon:1,
+            stillavailable:1
+        });
+        res.json(properties);
+    } catch (err) {
+        console.error("Error fetching properties:", err);
+        res.status(500).json({ error: 'Failed to fetch properties' });
+    }
+});
+router.get('/fetch-property-private', async (req, res) => {
+    if (!req.session.agentLoggedIn) {
+        return res.status(403).json({ error: "Unauthorized" });
+    }
+
+    try {
+        const properties = await Property.find();
+        res.json(properties);
+    } catch (err) {
+        console.error("Error fetching private properties:", err);
+        res.status(500).json({ error: 'Failed to fetch properties' });
+    }
+});
+router.put('/mark-sold/:id', async(req,res)=>{
+    const propertyId = req.params.id;
+    try{
+        const result = await Property.updateOne(
+            {_id: propertyId},
+            {$set: {stillavailable: false}}
+        );
+        if(result.modifiedCount > 0){
+            res.status(200).json({message: 'Property marked as sold.'})
+        }else{
+            res.status(404).json({message: "Sold or not available"})
+        }
+    }catch(err){
+        console.log(err);
+        res.status(500).json({message: `It's not you its us`})
+    }
+})
+
+module.exports = router
