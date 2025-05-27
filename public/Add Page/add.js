@@ -21,7 +21,7 @@ document.getElementById("add-form").addEventListener("submit", async (e)=>{
             ownername: formData.get('ownername'),
             mobileno: formData.get('ownernumber'),
             address: formData.get('Address'),
-            addedby: sessionStorage.getItem(respon.currentLoggedIn)
+            addedby: sessionStorage.getItem("agentCurrentlyLoggedIn")
         }
 
         const respo = await fetch('/listing/add-property',{
@@ -32,6 +32,8 @@ document.getElementById("add-form").addEventListener("submit", async (e)=>{
 
         const resultt = await respo.json();
         alert(resultt.message);
+        e.target.reset();
+        window.location.href = '/listing'
     }else{
         alert("You are not logged in or you dont have permission.")
     }
