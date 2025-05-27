@@ -3,7 +3,6 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const session = require('express-session')
-const port = 3000;
 const path = require('path');
 
 const home = require('./routes/home.js');
@@ -52,8 +51,8 @@ app.post('/logout',(req,res)=>{
 });
 
 
-app.listen(port, () => {
-  console.log(`Example app listening on localhost:${port} `)
+app.listen(process.env.PORT, () => {
+  console.log(`Example app listening on localhost`)
 });
 
 
