@@ -37,4 +37,4 @@ document.getElementById("add-form").addEventListener("submit", async (e)=>{
     }else{
         alert("You are not logged in or you dont have permission.")
     }
-})
+});
