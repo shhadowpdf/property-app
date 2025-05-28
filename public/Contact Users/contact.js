@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             `
 
             usercard.querySelector("#callbtn").addEventListener('click', () =>{
-                window.location.href = `+91${u.phone}`
+                window.location.href = `tel:+91${u.phone}`
             });
             container.appendChild(usercard);
         }
