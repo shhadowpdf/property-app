@@ -6,7 +6,13 @@ const contactSchema = new mongoose.Schema({
     email: String,
     phone: String,
     contacted: {type: Boolean, default: false},
-    date: {type: String, default: new Date(Date.now()).toString()},
+    date: {type: String, default: () => {
+            return new Date().toLocaleString('en-IN', {
+                timeZone: 'Asia/Kolkata',
+                hour12: true
+            });
+        }
+    }
 });
 
 module.exports = mongoose.model("ContactUs", contactSchema);

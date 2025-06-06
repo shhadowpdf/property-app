@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const propertySchema = new mongoose.Schema({
     number: Number,
     type: String,
@@ -12,8 +11,16 @@ const propertySchema = new mongoose.Schema({
     ownername: String,
     mobileno: Number,
     address: String,
-    addedon: {type: String, default: new Date(Date.now()).toString()},
-    stillavailable: {type: Boolean, default: true},
+    addedon: {
+        type: String, default: () => {
+            return new Date().toLocaleString('en-IN', {
+                timeZone: 'Asia/Kolkata',
+                hour12: true
+            });
+
+        }
+    },
+    stillavailable: { type: Boolean, default: true },
     addedby: String
 });
 
