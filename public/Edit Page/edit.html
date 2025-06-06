@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add-Property</title>
+    <link rel="stylesheet" href="/Edit Page/edit.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="outer-container">
+      <form action="" class="add-form" id="add-form">
+        <h2>Add Property</h2>
+        <div class="input-type">
+          <label for="propertytype">Property type</label>
+          <select name="propertytype" id="propertytype" required>
+            <option value="Duplex">Duplex</option>
+            <option value="Villa">Villa</option>
+            <option value="Bungalow">Bungalow</option>
+            <option value="Flat">Flat</option>
+            <option value="Commercial">Commercials</option>
+            <option value="Plots">Plots</option>
+          </select>
+        </div>
+        <div class="input-type">
+          <label for="bedrooms"
+            >Number of bedrooms (Completely mention with BHK)</label
+          >
+          <input
+            type="text"
+            name="bedrooms"
+            id="bedrooms"
+            placeholder="Enter number of bedrooms"
+            required
+          />
+        </div>
+        <div class="input-type">
+          <label for="furnished">Furnished status</label>
+          <select name="furnished" id="furnished">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div class="input-type">
+          <label for="locality">Locality</label>
+          <input
+            type="text"
+            name="locality"
+            id="locality"
+            placeholder="Enter locality/area"
+            required
+          />
+        </div>
+        <div class="input-type">
+          <label for="sqfeet">Area</label>
+          <input
+            type="number"
+            name="sqfeet"
+            id="sqfeet"
+            placeholder="Enter area in sqfeet"
+            required
+          />
+        </div>
+        <div class="input-type">
+          <label for="totalprice">Total Price</label>
+          <div class="money">
+            <input
+              type="number"
+              name="totalprice"
+              id="totalprice"
+              placeholder="Enter total price"
+              required
+            />
+            <select title="money" name="money" id="money">
+              <option value="Thousand">Thousand</option>
+              <option value="Lakh">Lakh</option>
+              <option value="Crore">Crore</option>
+            </select>
+          </div>
+        </div>
+        <div class="input-type">
+          <label for="availableOn">Available for</label>
+          <select name="availableOn" id="availableOn" required>
+            <option value="Rent">Rent</option>
+            <option value="Sale">Sale</option>
+          </select>
+        </div>
+
+        <div class="input-type">
+          <label for="ownername">Owner Name</label>
+          <input
+            type="text"
+            name="ownername"
+            id="ownername"
+            placeholder="Enter owner name"
+          />
+        </div>
+        <div class="input-type">
+          <label for="ownernumber">Owner Number</label>
+          <input
+            type="number"
+            name="ownernumber"
+            id="ownernumber"
+            placeholder="Enter owner number"
+            required
+          />
+        </div>
+        <div class="input-type">
+          <label for="Address"> Complete Address</label>
+          <input
+            type="text"
+            name="Address"
+            id="Address"
+            placeholder="Enter complete address"
+          />
+        </div>
+        <button type="submit">Update</button>
+        <p class="note">
+          Make sure the above mentioned information is correct.
+        </p>
+      </form>
+    </div>
+    <script src="/Edit Page/edit.js"></script>
+  </body>
+</html>

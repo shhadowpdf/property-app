@@ -69,6 +69,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                                 ${isLoggedIn ? "Click here to call owner" : "Click here to call now"}
                             </button>
                             <button type="button" class="callbtn ${isLoggedIn ? "" : "hidden"}" id="soldstatus">Property Sold</button>
+                            <button type="button" class="callbtn ${isLoggedIn ? "" : "hidden"}" id="editproperty">Edit Property</button>
+                            
                         </div>
                     </div>
                 `;
@@ -98,6 +100,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                             alert("Something went wrong.");
                         }
                     });
+                    propertycard.querySelector('#editproperty').addEventListener('click',()=>{
+                        try{
+                            window.location.href = `/listing/edit-property/${prop._id}`;
+                        }catch(err){
+                            console.log(err);
+                            alert("Something went wrong.")
+                        }
+                    })
                 }
 
                 container.appendChild(propertycard);

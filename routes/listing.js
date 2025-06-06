@@ -89,6 +89,43 @@ router.put('/mark-sold/:id', async(req,res)=>{
         console.log(err);
         res.status(500).json({message: `It's not you its us`})
     }
+});
+router.get('/fetch-property/:id', async (req,res)=> {
+    if (!req.session.agentLoggedIn) {
+        return res.status(403).json({ error: "Unauthorized" });
+    }
+    try{
+        const propertyId = req.params.id;
+        const result = await Property.findById(propertyId);
+        res.json(result);
+        
+    }catch(err){
+        console.log(err);
+        res.status(500).json({message: `Backend error`})
+    }
+});
+router.get('/edit-property/:id', (req,res)=> {
+    if(!req.session.agentLoggedIn){
+        return res.status(403).json({error: "Unauthorized"});
+    }
+    else{
+        res.sendFile(path.join(__dirname,'..','public', 'Edit Page', 'edit.html'));
+    }
+})
+
+router.put('/edit-property/:id', async (req,res)=> {
+    if(!req.session.agentLoggedIn){
+        return res.status(403).json({error: "Unauthorized"});
+    }
+    try{
+        const propertyId = req.params.id;
+        await Property.findByIdAndUpdate(propertyId, req.body);
+        res.json({message: "Property updated successfully."})
+    }catch(err){
+        res.status(500).json({error: "Update failed"});
+        console.log(err);
+        
+    }
 })
 
 module.exports = router
