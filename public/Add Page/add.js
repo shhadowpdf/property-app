@@ -30,9 +30,9 @@ document.getElementById("add-form").addEventListener("submit", async (e)=>{
             body: JSON.stringify(data)
         })
 
+        e.target.reset();
         const resultt = await respo.json();
         alert(resultt.message);
-        e.target.reset();
         window.location.href = '/listing'
     }else{
         alert("You are not logged in or you dont have permission.")
