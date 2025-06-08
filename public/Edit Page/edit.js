@@ -11,14 +11,12 @@ document.addEventListener("DOMContentLoaded", async (e) => {
     if (isLoggedIn) {
         const propertyData = await fetch(`/listing/fetch-property/${id}`);
         const property = await propertyData.json();
-        const price = property.totalprice.split(' ').map(tag => tag.trim())
         query('propertytype').value = property.type;
         query('bedrooms').value = property.bedrooms;
         query('furnished').value = property.furnished ? "Yes" : "No";
         query('locality').value = property.locality;
         query('sqfeet').value = property.sqfeet;
-        query('totalprice').value = price[0];
-        query('money').value = price[1];
+        query('totalprice').value = property.totalprice;
         query('availableOn').value = property.availableon;
         query('ownername').value = property.ownername;
         query('ownernumber').value = property.mobileno;
@@ -40,7 +38,7 @@ document.getElementById("add-form").addEventListener("submit", async (e) => {
             furnished: formData.get('furnished') === "Yes",
             locality: formData.get('locality'),
             sqfeet: formData.get('sqfeet'),
-            totalprice: `${formData.get('totalprice')} ${formData.get('money')}`,
+            totalprice: `${formData.get('totalprice')}`,
             availableon: formData.get('availableOn'),
             ownername: formData.get('ownername'),
             mobileno: formData.get('ownernumber'),

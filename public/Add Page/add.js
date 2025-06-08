@@ -16,7 +16,7 @@ document.getElementById("add-form").addEventListener("submit", async (e)=>{
             furnished: formData.get('furnished') === "Yes",
             locality: formData.get('locality'),
             sqfeet: formData.get('sqfeet'),
-            totalprice: `${formData.get('totalprice')} ${formData.get('money')}`,
+            totalprice: `${formData.get('totalprice')}`,
             availableon: formData.get('availableOn'),
             ownername: formData.get('ownername'),
             mobileno: formData.get('ownernumber'),
