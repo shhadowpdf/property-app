@@ -4,13 +4,24 @@ const fsp = require('fs/promises')
 const fs = require('fs')
 const router = express.Router();
 const Property = require('../models/propertyData.js')
+const VisitLog = require('../models/vistData.js')
+router.use(async (req, res, next) => {
+    if (req.path === '/') {
+    try {
+        const log = new VisitLog({
+            ip: req.socket?.remoteAddress || "Unk",
+            route: req.originalUrl,
+            method: req.method
+        });
 
-
-const logs = (req, res, next) => {
-    fsp.appendFile(path.join(__dirname, '..', 'logs.txt'), `Someone visited Listing ${Date.now()} \n`)
-    next()
-}
-router.use(logs)
+        await log.save();
+        console.log("Visit logged:", log);
+    } catch (err) {
+        console.error("Failed to log visit", err);
+    }
+  }
+    next();
+});
 
 router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..','public', 'Listing', 'listing.html'))

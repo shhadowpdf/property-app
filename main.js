@@ -4,13 +4,11 @@ const express = require('express');
 const app = express();
 const session = require('express-session')
 const path = require('path');
-
+const mongoose = require('mongoose');
 const home = require('./routes/home.js');
 const listing = require('./routes/listing.js');
 const login = require('./routes/login.js');
 const contactus = require('./routes/contactus.js');
-
-const mongoose = require('mongoose');
 app.use(session({
   secret: process.env.MYSECRET, 
   resave: false,
@@ -23,6 +21,8 @@ app.use(session({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+
 
 
 app.use('/', home);
