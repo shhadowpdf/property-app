@@ -21,10 +21,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         const contactUser = query('#contactuser');
         const allProperties = query('#allproperties');
         const everyone = query('#everyone');
+        const searchInput = query("#searchInput")
         function renderProperties() {
             const selectedType = propertyFilter.value.toLowerCase();
             const selectedAvailability = availableFilter.value.toLowerCase();
-
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const searchField = query("#searchOption").value.toLowerCase();
             container.innerHTML = "";
 
             for (const prop of properties) {
@@ -32,8 +34,30 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 const typeMatch = selectedType === "all" || prop.type.toLowerCase() === selectedType;
                 const availabilityMatch = selectedAvailability === "all" || prop.availableon.toLowerCase() === selectedAvailability;
-
-                if (!typeMatch || !availabilityMatch) continue;
+                // const allFields = ` ${prop.number} ${prop.type} ${prop.availableon} ${prop.locality} ${prop.totalprice} ${prop.bedrooms}
+                // ${prop.ownername} ${prop.address} ${prop.mobileno} ${prop.addedby} ${prop.number}
+                // `.toLowerCase();
+                // const matchSearch = allFields.includes(searchTerm);
+                let fieldValue = "";
+                switch (searchField) {
+                    case "id":
+                        fieldValue = prop.number;
+                        break;
+                    case "locality":
+                        fieldValue = prop.locality;
+                        break;
+                    case "totalprice":
+                        fieldValue = prop.totalprice.toString();
+                        break;
+                    case "bedrooms":
+                        fieldValue = prop.bedrooms?.toString() || "";
+                        break;
+                    default:
+                        fieldValue = "";
+                }
+                fieldValue = String(fieldValue || "").toLowerCase();
+                const matchSearch = fieldValue.includes(searchTerm);
+                if (!typeMatch || !availabilityMatch || !matchSearch) continue;
 
                 const propertycard = document.createElement('div');
                 propertycard.className = "property-card";
@@ -100,10 +124,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                             alert("Something went wrong.");
                         }
                     });
-                    propertycard.querySelector('#editproperty').addEventListener('click',()=>{
-                        try{
+                    propertycard.querySelector('#editproperty').addEventListener('click', () => {
+                        try {
                             window.location.href = `/listing/edit-property/${prop._id}`;
-                        }catch(err){
+                        } catch (err) {
                             console.log(err);
                             alert("Something went wrong.")
                         }
@@ -117,6 +141,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         renderProperties();
         propertyFilter.addEventListener("change", renderProperties);
         availableFilter.addEventListener("change", renderProperties);
+        query("#searchOption").addEventListener("change", renderProperties);
+        searchInput.addEventListener('input', renderProperties);
 
         if (isLoggedIn) {
             query(".nav-text").style.display = "none";
