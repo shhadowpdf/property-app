@@ -4,9 +4,9 @@
   "description": "Property webpage",
   "main": "main.js",
   "scripts": {
-    "start": "nodemon",
+    "start": "nodemon main.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon"
+    "dev": "nodemon main.js"
   },
   "author": "Saksham Kushwah",
   "license": "ISC",
