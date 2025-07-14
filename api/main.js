@@ -24,36 +24,30 @@ app.use(express.static(path.join(__dirname, '..','public')));
 
 
 
-
-app.get('/', (req,res)=> {
-  res.send("WORKED")
-});
 app.use('/home', home);
 app.use('/listing', listing);
 app.use('/agentlogin', login);
 app.use('/contactus',contactus)
 
-// app.get('/permission-check', async (req,res)=>{
-//     res.json({
-//       currentLoggedIn: req.session.agentCurrentlyLoggedIn || null,
-//       ifLoggedIn: req.session.agentLoggedIn || null
-//     })
-// })
+app.get('/permission-check', async (req,res)=>{
+    res.json({
+      currentLoggedIn: req.session.agentCurrentlyLoggedIn || null,
+      ifLoggedIn: req.session.agentLoggedIn || null
+    })
+})
 
-// app.post('/logout',(req,res)=>{
-//   req.session.destroy((err) => {
-//     if (err) {
-//         console.log(err);
-//         return res.status(500).json({ success: false, message: "Logout failed" });
-//     }
-//     res.clearCookie('connect.sid');
-//     res.status(200).json({ success: true, message: "Logged Out" });
-//   });
+app.post('/logout',(req,res)=>{
+  req.session.destroy((err) => {
+    if (err) {
+        console.log(err);
+        return res.status(500).json({ success: false, message: "Logout failed" });
+    }
+    res.clearCookie('connect.sid');
+    res.status(200).json({ success: true, message: "Logged Out" });
+  });
 
-// });
-// app.use((req, res) => {
-//   res.status(404).send('404 Not Found - custom error page');
-// });
+});
+
 
 
 // app.listen(process.env.PORT, () => {
