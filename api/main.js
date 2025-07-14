@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '..','public')));
 
 
-
+app.use('/', home)
 app.use('/home', home);
 app.use('/listing', listing);
 app.use('/agentlogin', login);
