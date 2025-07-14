@@ -49,6 +49,9 @@ app.post('/logout',(req,res)=>{
   });
 
 });
+app.use((req, res) => {
+  res.status(404).send('404 Not Found - custom error page');
+});
 
 
 // app.listen(process.env.PORT, () => {
