@@ -64,4 +64,5 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
   console.log("CONNECTED SUCCESSFULLY TO DATABASE");
 })
 
-module.exports = app
+const serverless = require('serverless-http');
+module.exports = serverless(app);
