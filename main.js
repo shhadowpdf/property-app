@@ -51,9 +51,9 @@ app.post('/logout',(req,res)=>{
 });
 
 
-// app.listen(process.env.PORT, () => {
-//   console.log(`Example app listening on http://localhost:${process.env.PORT}`)
-// });
+app.listen(process.env.PORT, () => {
+  console.log(`Example app listening on http://localhost:${process.env.PORT}`)
+});
 
 
 
@@ -61,4 +61,4 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
   console.log("CONNECTED SUCCESSFULLY TO DATABASE");
 })
 
-module.exports = app
+// module.exports = app
