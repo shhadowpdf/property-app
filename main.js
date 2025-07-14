@@ -52,7 +52,7 @@ app.post('/logout',(req,res)=>{
 
 
 app.listen(process.env.PORT, () => {
-  console.log(`Example app listening on localhost`)
+  console.log(`Example app listening on http://localhost:${process.env.PORT}`)
 });
 
 
