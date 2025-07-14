@@ -20,7 +20,7 @@ router.get('/contactusers',(req,res)=>{
     if (!req.session.agentLoggedIn) {
         res.send("NOT FOR YOU")
     }else{
-        res.sendFile(path.join(__dirname,'..','public','Contact Users','contact.html'))
+        res.sendFile(path.join(__dirname,'..','public','Contact','contact.html'))
     }
 router.get('/fetch-users', async (req, res) => {
     if (!req.session.agentLoggedIn) {

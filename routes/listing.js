@@ -28,10 +28,10 @@ router.get('/', (req, res) => {
 }
 );
 router.get('/all-property',(req,res)=>{
-    res.sendFile(path.join(__dirname,'..','public','All Properties', 'all.html'))
+    res.sendFile(path.join(__dirname,'..','public','Properties', 'all.html'))
 })
 router.get('/add-property',(req,res)=>{
-    res.sendFile(path.join(__dirname,'..','public', 'Add Page', 'add.html'))
+    res.sendFile(path.join(__dirname,'..','public', 'Add', 'add.html'))
 })
 router.post('/add-property', async (req,res)=> {
     try{
@@ -120,7 +120,7 @@ router.get('/edit-property/:id', (req,res)=> {
         return res.status(403).json({error: "Unauthorized"});
     }
     else{
-        res.sendFile(path.join(__dirname,'..','public', 'Edit Page', 'edit.html'));
+        res.sendFile(path.join(__dirname,'..','public', 'Edit', 'edit.html'));
     }
 })
 

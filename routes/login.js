@@ -6,7 +6,7 @@ const Agents = require('../models/agentData.js')
 
 
 router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public', 'Login Page', 'login.html'))
+    res.sendFile(path.join(__dirname, '..', 'public', 'Login', 'login.html'))
 });
 
 router.post('/agentLoginData', async (req, res) => {
