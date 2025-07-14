@@ -28,10 +28,10 @@ app.use(express.static(path.join(__dirname, '..','public')));
 app.get('/', (req,res)=> {
   res.send("WORKED")
 });
-// app.use('/home', home);
-// app.use('/listing', listing);
-// app.use('/agentlogin', login);
-// app.use('/contactus',contactus)
+app.use('/home', home);
+app.use('/listing', listing);
+app.use('/agentlogin', login);
+app.use('/contactus',contactus)
 
 // app.get('/permission-check', async (req,res)=>{
 //     res.json({
